@@ -112,6 +112,14 @@ local inf_yield_button = misc_tab:Button({
 })
 
 local inf_yield_button = misc_tab:Button({
+	Title = "BecomeaBrainrot",
+	Desc = "shop",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/BecomeaBrainrot"))()
+	end
+})
+
+local inf_yield_button = misc_tab:Button({
 	Title = "SwingObbyBRainrot",
 	Desc = "auto swing itp",
 	Callback = function()
