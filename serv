@@ -1,0 +1,660 @@
+--[[By MaxproGlitcher Discord:maxproglitcher
+
+-- Site Web official: https://github.com/MaxproGlitcher/Server-Finder-Deluxe
+   
+   _____                                       ________.__  .__  __         .__                  
+  /     \ _____  ___  ________________  ____  /  _____/|  | |__|/  |_  ____ |  |__   ___________ 
+ /  \ /  \\__  \ \  \/  /\____ \_  __ \/  _ \/   \  ___|  | |  \   __\/ ___\|  |  \_/ __ \_  __ \
+/    Y    \/ __ \_>    < |  |_> >  | \(  <_> )    \_\  \  |_|  ||  | \  \___|   Y  \  ___/|  | \/
+\____|__  (____  /__/\_ \|   __/|__|   \____/ \______  /____/__||__|  \___  >___|  /\___  >__|   
+        \/     \/      \/|__|                        \/                   \/     \/     \/    
+  
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+   _____                            ______ _           _             _____       _                
+  / ____|                          |  ____(_)         | |           |  __ \     | |               
+ | (___   ___ _ ____   _____ _ __  | |__   _ _ __   __| | ___ _ __  | |  | | ___| |_   ___  _____ 
+  \___ \ / _ \ '__\ \ / / _ \ '__| |  __| | | '_ \ / _` |/ _ \ '__| | |  | |/ _ \ | | | \ \/ / _ \
+  ____) |  __/ |   \ V /  __/ |    | |    | | | | | (_| |  __/ |    | |__| |  __/ | |_| |>  <  __/
+ |_____/ \___|_|    \_/ \___|_|    |_|    |_|_| |_|\__,_|\___|_|    |_____/ \___|_|\__,_/_/\_\___|
+                                                                                                  
+                                                                                                  
+]]
+--------------------------------------------------------------------------------------------------------------------
+if not game:IsLoaded() then
+	game.Loaded:Wait()
+end
+
+-- ════════════════════════════════════════
+--        (Chargement/Décoration)
+-- ════════════════════════════════════════
+
+local TweenService = game:GetService("TweenService")
+local Lighting = game:GetService("Lighting")
+local CoreGui = game:GetService("CoreGui")
+
+local gui = Instance.new("ScreenGui", game.CoreGui)
+gui.Parent = CoreGui
+gui.IgnoreGuiInset = true
+gui.ResetOnSpawn = false
+
+local blur = Instance.new("BlurEffect")
+blur.Parent = Lighting
+blur.Size = 12
+
+local main = Instance.new("Frame")
+main.Parent = gui
+main.Size = UDim2.new(0, 420, 0, 260)
+main.Position = UDim2.new(0.5, -210, 0.5, -130)
+main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+main.BorderSizePixel = 0
+Instance.new("UICorner", main).CornerRadius = UDim.new(0, 12)
+
+local title = Instance.new("TextLabel")
+title.Parent = main
+title.BackgroundTransparency = 1
+title.Size = UDim2.new(1, 0, 0, 50)
+title.Position = UDim2.new(0, 0, 0, 10)
+title.Font = Enum.Font.GothamBlack
+title.TextSize = 40
+title.TextColor3 = Color3.fromRGB(240, 240, 240)
+title.Text = "Server Finder Deluxe"
+
+local versionLabel = Instance.new("TextLabel")
+versionLabel.Parent = main
+versionLabel.BackgroundTransparency = 1
+versionLabel.Size = UDim2.new(1, 0, 0, 20)
+versionLabel.Position = UDim2.new(0, 0, 0, 70)
+versionLabel.Font = Enum.Font.GothamMedium
+versionLabel.TextSize = 16
+versionLabel.TextColor3 = Color3.fromRGB(210, 210, 210)
+versionLabel.Text = "Ultimate Server Scanner"
+
+local status = Instance.new("TextLabel")
+status.Parent = main
+status.BackgroundTransparency = 1
+status.Size = UDim2.new(1, 0, 0, 30)
+status.Position = UDim2.new(0, 0, 0, 105)
+status.Font = Enum.Font.Gotham
+status.TextSize = 18
+status.TextColor3 = Color3.fromRGB(200, 200, 200)
+status.Text = "Loading..."
+
+local percent = Instance.new("TextLabel")
+percent.Parent = main
+percent.BackgroundTransparency = 1
+percent.Size = UDim2.new(1, 0, 0, 25)
+percent.Position = UDim2.new(0, 0, 0, 135)
+percent.Font = Enum.Font.GothamBold
+percent.TextSize = 20
+percent.TextColor3 = Color3.fromRGB(200, 200, 200)
+percent.Text = "0%"
+
+local barBack = Instance.new("Frame")
+barBack.Parent = main
+barBack.Size = UDim2.new(0, 280, 0, 8)
+barBack.Position = UDim2.new(0.5, -140, 0, 165)
+barBack.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+barBack.BorderSizePixel = 0
+Instance.new("UICorner", barBack).CornerRadius = UDim.new(0, 4)
+
+local bar = Instance.new("Frame")
+bar.Parent = barBack
+bar.Size = UDim2.new(0, 0, 1, 0)
+bar.BackgroundColor3 = Color3.fromRGB(180, 180, 180)
+bar.BorderSizePixel = 0
+Instance.new("UICorner", bar).CornerRadius = UDim.new(0, 4)
+
+local credit = Instance.new("TextLabel")
+credit.Parent = main
+credit.BackgroundTransparency = 1
+credit.Size = UDim2.new(0, 200, 0, 20)
+credit.Position = UDim2.new(1, -210, 1, -30)
+credit.Font = Enum.Font.Gotham
+credit.TextSize = 16
+credit.TextColor3 = Color3.fromRGB(170, 170, 170)
+credit.TextXAlignment = Enum.TextXAlignment.Right
+credit.Text = "By MaxproGlitcher"
+
+local discord = Instance.new("TextLabel")
+discord.Parent = main
+discord.BackgroundTransparency = 1
+discord.Size = UDim2.new(0, 220, 0, 20)
+discord.Position = UDim2.new(0, 10, 1, -30) 
+discord.Font = Enum.Font.Gotham
+discord.TextSize = 16
+discord.TextColor3 = Color3.fromRGB(170, 170, 170)
+discord.TextXAlignment = Enum.TextXAlignment.Left
+discord.Text = "Discord : maxproglitcher"
+
+local function GetEasterDate(year)
+	local A = math.floor(year/100)
+	local B = math.floor((13+8*A)/25)
+	local C = (15-B+A-math.floor(A/4))%30
+	local D = (4+A-math.floor(A/4))%7
+	local E = (19*(year%19)+C)%30
+	local F = (2*(year%4)+4*(year%7)+6*E+D)%7
+	local G = 22 + E + F
+
+	if E == 29 and F == 6 then
+		return 4, 19
+	elseif E == 28 and F == 6 then
+		return 4, 18
+	elseif G > 31 then
+		return 4, G-31
+	else
+		return 3, G
+	end
+end
+
+
+local isXmas, isHalloween, isNewYear, isEaster, isValentine = false, false, false, false, false
+
+local success, err = pcall(function()
+	local date = os.date("*t")
+	local emonth, eday = GetEasterDate(date.year)
+	isXmas = date.month == 12 and date.day >= 15 and date.day <= 29
+	isHalloween = (date.month == 10 and date.day >= 23) or (date.month == 11 and date.day <= 1)
+	isNewYear = (date.month == 12 and date.day >= 30) or (date.month == 1 and date.day <= 2)
+	isValentine = (date.month == 2 and date.day == 14)
+    isEaster = (date.month == emonth and date.day == eday) 
+end)
+
+if not success then
+	warn("Date system error for loading gui:", err)
+end
+
+local function decorate(startEmoji, endEmoji)
+	title.Text = startEmoji .. " Server Finder Deluxe " .. endEmoji
+	title.TextSize = 32
+end
+
+local function cycle(colors)
+	local i = 1
+	task.spawn(function()
+		while gui.Parent do
+			local c = colors[i]
+			title.TextColor3 = c
+			versionLabel.TextColor3 = c
+			status.TextColor3 = c
+			credit.TextColor3 = c
+			percent.TextColor3 = c
+			bar.BackgroundColor3 = c
+			
+			if discord then
+				discord.TextColor3 = c
+			end
+			
+			i = i % #colors + 1
+			task.wait(0.5)
+		end
+	end)
+end
+
+if isXmas then
+	decorate("🎄", "🎄")
+	cycle({
+		Color3.fromRGB(0,255,0), 
+		Color3.fromRGB(255,0,0), 
+		Color3.fromRGB(255,255,255)})
+elseif isHalloween then
+	decorate("🎃", "🎃")
+	cycle({
+		Color3.fromRGB(0,0,0), 
+		Color3.fromRGB(255,165,0)})
+elseif isNewYear then
+	decorate("🎉", "🎉")
+	cycle({
+		Color3.fromRGB(255,255,0), 
+		Color3.fromRGB(0,0,0)})
+elseif isEaster then
+	decorate("🐰", "🐰")
+	cycle({
+		Color3.fromRGB(216,191,216),
+		Color3.fromRGB(255,182,193),
+		Color3.fromRGB(193,225,193),
+		Color3.fromRGB(173,216,230)
+	})
+elseif isValentine then
+	decorate("💗", "💗")
+	cycle({
+		Color3.fromRGB(0,0,0), 
+		Color3.fromRGB(255,85,127)})
+end
+
+
+local loading = true
+
+pcall(function()
+	task.spawn(function()
+		while loading and status and status.Parent do
+			for i = 1, 3 do
+				if not loading then break end
+				status.Text = "Loading" .. string.rep(".", i)
+				task.wait(0.4)
+			end
+			if not loading then break end
+			status.Text = "Loading"
+			task.wait(0.4)
+		end
+	end)
+end)
+
+
+pcall(function()
+	local duration = 2
+	TweenService:Create(
+		bar,
+		TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+		{ Size = UDim2.new(1, 0, 1, 0) }
+	):Play()
+
+	for i = 0, 100 do
+		if not percent or not percent.Parent then break end
+		percent.Text = i .. "%"
+		task.wait(duration / 100)
+	end
+end)
+
+loading = false
+status.Text = "Success"
+
+task.wait(0.30)
+
+if blur then
+	blur:Destroy()
+end
+
+if gui then
+	gui:Destroy()
+end
+
+--------------------------------------------------------------------------------------------------------------------
+
+if _G.SFD_LOADED and not _G.SFD_CAN_RELOAD then
+	-- error("Server Finder Deluxe is already running!", 0)
+	return 
+end
+
+_G.SFD_LOADED = true
+_G.SFD_CAN_RELOAD = false
+
+if not game:IsLoaded() then game.Loaded:Wait() end
+
+
+-- ════════════════════════════════════════
+--        (Compatibilité getgenv)
+-- ════════════════════════════════════════
+
+pcall(function()
+	if game:GetService("CoreGui"):FindFirstChild("incognito") then
+		local oldstring = loadstring
+		getfenv().loadstring = function(code)
+			local source = code
+			source = source:gsub("(%a+)%s*([%+%-%*/])=%s*", "%1 = %1 %2 ")
+			return oldstring(source)
+		end
+	end
+
+	if not getgenv then
+		getfenv().getgenv = function(layer)
+			return getfenv(layer)
+		end
+	end
+end)
+
+getgenv().NextServer = nil
+getgenv().HasScannedAll = false
+
+-- ════════════════════════════════════════
+--         (Service/Info)
+-- ════════════════════════════════════════
+
+local HttpService = game:GetService("HttpService")
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local UserInputService = game:GetService("UserInputService")
+local LocalizationService = game:GetService("LocalizationService")
+local TweenService = game:GetService("TweenService")
+local VRService = game:GetService("VRService")
+local CaptureService = game:GetService("CaptureService")
+local SoundService = game:GetService("SoundService")
+
+-- ════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+-- (Service File / Détection combatibilité des appareille disponible pour exercution du script / Caméra / Service Téléport) 
+-- ════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+writefile = writefile or getgenv().writefile
+makefolder = makefolder or getgenv().makefolder
+readfile = readfile or getgenv().readfile
+delfolder = delfolder or getgenv().delfolder
+delfile = delfile or getgenv().delfile
+listfiles = listfiles or getgenv().listfiles
+isfolder = isfolder or getgenv().isfolder
+isfile = isfile or getgenv().isfile
+
+
+local camera = workspace.CurrentCamera or workspace:FindFirstChildOfClass("Camera")
+if not camera then
+	repeat task.wait() camera = workspace.CurrentCamera until camera
+end
+
+local SCREEN_SIZE = camera.ViewportSize
+local platform = UserInputService:GetPlatform()
+
+local IsOnMobile = (function() if platform == Enum.Platform.IOS or platform == Enum.Platform.Android or platform == Enum.Platform.AndroidTV or platform == Enum.Platform.Chromecast or platform == Enum.Platform.MetaOS then
+		return true
+	end
+
+	if platform == Enum.Platform.None then
+		return UserInputService.TouchEnabled and not (UserInputService.KeyboardEnabled or UserInputService.MouseEnabled)
+	end
+
+	return false
+end)()
+
+local IsOnPC = (function() if platform == Enum.Platform.Windows or platform == Enum.Platform.OSX or platform == Enum.Platform.Linux or platform == Enum.Platform.SteamOS or platform == Enum.Platform.UWP or platform == Enum.Platform.DOS or platform == Enum.Platform.BeOS then
+		return true
+	end
+
+	if platform == Enum.Platform.None then
+		return UserInputService.KeyboardEnabled or UserInputService.MouseEnabled
+	end
+
+	return false
+end)()
+
+local VREnabled = game:GetService("VRService").VREnabled
+
+local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+
+local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
+
+--------------------------------------------------------------------------------------------------------------------
+
+-- ══════════════════════════════════════════════════
+--   (Détection HTTP Function / Détection GetGenv)
+-- ══════════════════════════════════════════════════
+
+local LocalizationService = game:GetService("LocalizationService")
+local TweenService = game:GetService("TweenService")
+
+
+local hasGetGenv = false
+
+pcall(function()
+	if typeof(getgenv) == "function" then
+		hasGetGenv = true
+	end
+end)
+
+
+local requestFunc
+local httpSuccess = false
+
+pcall(function()
+	if syn and syn.request then
+		requestFunc = syn.request
+	elseif http and http.request then
+		requestFunc = http.request
+	elseif http_request then
+		requestFunc = http_request
+	elseif fluxus and fluxus.request then
+		requestFunc = fluxus.request
+	elseif request then
+		requestFunc = request
+	end
+end)
+
+if requestFunc then
+	httpSuccess = true
+end
+
+
+local translations = {
+	fr = {
+		getgenv = "La fonction getgenv est introuvable ! ⚠️",
+		http = "Aucune fonction HTTP supportée trouvée ! ⚠️"
+	},
+	en = {
+		getgenv = "getgenv function not found! ⚠️",
+		http = "No supported HTTP request function found! ⚠️"
+	},
+	es = {
+		getgenv = "¡Función getgenv no encontrada! ⚠️",
+		http = "¡No se encontró ninguna función HTTP compatible! ⚠️"
+	},
+	pt = {
+		getgenv = "Função getgenv não encontrada! ⚠️",
+		http = "Nenhuma função HTTP suportada encontrada! ⚠️"
+	},
+	tr = {
+		getgenv = "getgenv işlevi bulunamadı! ⚠️",
+		http = "Desteklenen HTTP isteği işlevi bulunamadı! ⚠️"
+	},
+	it = {
+		getgenv = "Funzione getgenv non trovata! ⚠️",
+		http = "Nessuna funzione HTTP supportata trovata! ⚠️"
+	},
+	de = {
+		getgenv = "getgenv-Funktion nicht gefunden! ⚠️",
+		http = "Keine unterstützte HTTP-Anfragefunktion gefunden! ⚠️"
+	},
+	ar = {
+		getgenv = "لم يتم العثور على دالة getgenv! ⚠️",
+		http = "لم يتم العثور على أي دالة HTTP مدعومة! ⚠️"
+	},
+	ja = {
+		getgenv = "getgenv 関数が見つかりません！⚠️",
+		http = "サポートされているHTTPリクエスト機能が見つかりません！⚠️"
+	},
+	ru = {
+		getgenv = "Функция getgenv не найдена! ⚠️",
+		http = "Поддерживаемая функция HTTP-запроса не найдена! ⚠️"
+	},
+	zh = {
+		getgenv = "未找到 getgenv 函数！⚠️",
+		http = "未找到受支持的HTTP请求函数！⚠️"
+	}
+}
+
+local function getTranslatedMessage()
+	local langCode = (LocalizationService.RobloxLocaleId or "en"):sub(1,2)
+	return langText[langCode] or langText["en"]
+end
+
+
+local NotificationLib = {
+	_notifications = {},
+	_theme = {
+		primaryColor = Color3.fromRGB(30,30,30),
+		textColor = Color3.fromRGB(255,255,255),
+		font = Enum.Font.GothamSemibold,
+		cornerRadius = UDim.new(0,8)
+	},
+	_settings = {
+		duration = 4,
+		spacing = 12,
+		fadeTime = 0.28,
+		slideDistance = 18
+	},
+	_icons = { info = "rbxassetid://9405926389" }
+}
+
+function NotificationLib:_init()
+	if not self._container then
+		self._container = Instance.new("ScreenGui")
+		self._container.Name = "NotificationLibrary"
+		self._container.ResetOnSpawn = false
+		self._container.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+		self._container.Parent = game:GetService("CoreGui")
+	end
+end
+
+function NotificationLib:_calculatePosition(i)
+	return UDim2.new(1, -24, 1, -24 - (i-1)*(90 + self._settings.spacing))
+end
+
+function NotificationLib:_animateOut(frame)
+	local tween = TweenService:Create(
+		frame,
+		TweenInfo.new(self._settings.fadeTime, Enum.EasingStyle.Quad),
+		{
+			Position = frame.Position + UDim2.new(0,0,0,self._settings.slideDistance),
+			BackgroundTransparency = 1
+		}
+	)
+	tween:Play()
+	tween.Completed:Connect(function()
+		if frame.Parent then frame:Destroy() end
+	end)
+end
+
+function NotificationLib:Notify(opt)
+	self:_init()
+	opt = opt or {}
+
+	local frame = Instance.new("Frame")
+	frame.Size = UDim2.new(0,340,0,90)
+	frame.AnchorPoint = Vector2.new(1,1)
+	frame.Position = self:_calculatePosition(#self._notifications + 1)
+	frame.BackgroundColor3 = self._theme.primaryColor
+	frame.Parent = self._container
+	Instance.new("UICorner", frame).CornerRadius = self._theme.cornerRadius
+
+	local title = Instance.new("TextLabel", frame)
+	title.Text = opt.Title or "Notification"
+	title.Font = self._theme.font
+	title.TextColor3 = self._theme.textColor
+	title.TextSize = 16
+	title.TextXAlignment = Enum.TextXAlignment.Left
+	title.BackgroundTransparency = 1
+	title.Size = UDim2.new(1,-60,0,22)
+	title.Position = UDim2.new(0,48,0,10)
+
+	local msg = Instance.new("TextLabel", frame)
+	msg.Text = opt.Message or ""
+	msg.Font = Enum.Font.Gotham
+	msg.TextColor3 = self._theme.textColor
+	msg.TextSize = 14
+	msg.TextWrapped = true
+	msg.TextXAlignment = Enum.TextXAlignment.Left
+	msg.BackgroundTransparency = 1
+	msg.Size = UDim2.new(1,-60,0,48)
+	msg.Position = UDim2.new(0,48,0,30)
+
+	table.insert(self._notifications, frame)
+
+	task.delay(opt.Duration or self._settings.duration, function()
+		self:_animateOut(frame)
+	end)
+end
+
+
+
+if not hasGetGenv then
+	warn("[EXPLOIT WARNING] getgenv function not found")
+	NotificationLib:Notify({
+		Title = "EXPLOIT WARNING",
+		Message = getMessage("getgenv"),
+		Duration = 5
+	})
+end
+
+if not httpSuccess then
+	warn("[HTTP WARNING] No supported HTTP request function found")
+	NotificationLib:Notify({
+		Title = "HTTP WARNING",
+		Message = getMessage("http"),
+		Duration = 5
+	})
+end
+
+
+_G.MISSING_GETGENV = not hasGetGenv
+_G.MISSING_HTTP = not httpSuccess
+
+--------------------------------------------------------------------------------------------------------------------
+
+-- ════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+--   (Protection Gui /Main Frame/Protection Logo / Détection Mouse and Touch /Resize Gui)
+-- ════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+local screenGui = Instance.new("ScreenGui", game:GetService("CoreGui"))
+
+-- Essayer de créer un parent vers un emplacement protégé
+pcall(function()
+	if gethui then
+		screenGui.Parent = gethui()
+	elseif syn and syn.protect_gui then
+		syn.protect_gui(screenGui)
+		screenGui.Parent = game:GetService("CoreGui")
+	else
+		screenGui.Parent = game:GetService("CoreGui")
+	end
+end)
+
+if not screenGui.Parent then
+	screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+end
+
+
+local mainFrame = Instance.new("Frame", screenGui)
+mainFrame.Name = "SFD_ProtectGui" .. tostring(math.random(100, 999)) 
+mainFrame.Size = UDim2.new(0, 650, 0, 500)
+mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+mainFrame.BorderSizePixel = 0
+mainFrame.ZIndex = 5 -- On donne une base solide
+
+local corner = Instance.new("UICorner")
+corner.Parent = mainFrame
+
+-- Détection des Screen 
+
+if isOnMobile or SCREEN_SIZE.X < 800 then
+	mainFrame.Size = UDim2.new(0, 800, 0, 600)
+else
+	mainFrame.Size = UDim2.new(0, 650, 0, 500)
+end
+
+local dragging, dragInput, dragStart, startPos
+local function updateDrag(input)
+	local delta = input.Position - dragStart
+	local pos = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	TweenService:Create(mainFrame, TweenInfo.new(0.15), {Position = pos}):Play()
+end
+
+mainFrame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = mainFrame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then dragging = false end
+		end)
+	end
+end)
+
+mainFrame.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if dragging and input == dragInput then updateDrag(input) end
+end)
+
+--------------------------------------------------------------------------------------------------------------------
+
+local TweenService = game:GetService("TweenService")
+
+local dir = "Server Finder Deluxe"
+local file = dir.."/sfd_logo.png"
+local link = "https://raw.gi
