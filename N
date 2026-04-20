@@ -112,6 +112,14 @@ local inf_yield_button = misc_tab:Button({
 })
 
 local inf_yield_button = misc_tab:Button({
+	Title = "FreeGamepass",
+	Desc = "darmowy sklep",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Sqweex-lua/Free-Product-Obfs/main/obfuscated.lua"))()
+	end
+})
+
+local inf_yield_button = misc_tab:Button({
 	Title = "+1 double jump brainrot",
 	Desc = "Auto escape sort inc and more",
 	Callback = function()
