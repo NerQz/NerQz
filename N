@@ -112,6 +112,14 @@ local inf_yield_button = misc_tab:Button({
 })
 
 local inf_yield_button = misc_tab:Button({
+	Title = "Loop fling all",
+	Desc = "troll",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasilva864/fling-all/refs/heads/main/fling%20all"))()
+	end
+})
+
+local inf_yield_button = misc_tab:Button({
 	Title = "FreeGamepass",
 	Desc = "darmowy sklep",
 	Callback = function()
