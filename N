@@ -99,7 +99,7 @@ local inf_jump_toggle = player_tab:Toggle({
 })
 
 local misc_tab = window:Tab({
-	Title = "test",
+	Title = "Serwer list",
 	Icon = "file-code"
 })
 
