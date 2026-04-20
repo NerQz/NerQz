@@ -112,10 +112,10 @@ local inf_yield_button = misc_tab:Button({
 })
 
 local inf_yield_button = misc_tab:Button({
-	Title = "BecomeaBrainrot",
-	Desc = "shop",
+	Title = "+1 double jump brainrot",
+	Desc = "Auto escape sort inc and more",
 	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/BecomeaBrainrot"))()
+		loadstring(game:HttpGet("https://rawscripts.net/raw/+1-Double-Jump-to-Save-Brainrots-Auto-Escape-n-Sort-Inventory-and-more-201187"))()
 	end
 })
 
