@@ -108,7 +108,7 @@ local inf_yield_button = misc_tab:Button({
 	Title = "Serwer list",
 	Desc = "serwer list",
 	Callback = function()
-		loadstring(game:HttpGet("https://pastebin.com/raw/WZYjUXvg"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/lumpiasallad/Roblox_ServerHop/refs/heads/main/ServerHopScript.lua"))()
 	end
 })
 
