@@ -133,6 +133,14 @@ local inf_yield_button = misc_tab:Button({
 })
 
 local inf_yield_button = misc_tab:Button({
+	Title = "Avatar Copy",
+	Desc = "skin",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/AlexionScripter/AvatarCopyv1/refs/heads/main/AlexionAvatarCopy.lua"))()
+	end
+})
+
+local inf_yield_button = misc_tab:Button({
 	Title = "FreeGamepass",
 	Desc = "darmowy sklep",
 	Callback = function()
