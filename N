@@ -141,6 +141,15 @@ local inf_yield_button = misc_tab:Button({
 	end
 })
 
+
+local inf_yield_button = misc_tab:Button({
+	Title = "ShootLASERSForBrainrots",
+	Desc = "auto tp",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/ShootLASERSForBrainrots"))()
+	end
+})
+
 local inf_yield_button = misc_tab:Button({
 	Title = "FreeGamepass",
 	Desc = "darmowy sklep",
