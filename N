@@ -192,9 +192,9 @@ local inf_yield_button = misc_tab:Button({
 
 local inf_yield_button = misc_tab:Button({
 	Title = "kick a luckyblock",
-	Desc = "insta claim tp",
+	Desc = "new by fartez",
 	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/KickaLuckyBlock"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/fartez127-design/FARTEZHUB/refs/heads/main/FARTEZHUBXKickaLuckyBlock"))()
 	end
 })
 
