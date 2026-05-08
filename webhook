@@ -1,0 +1,62 @@
+--[[ 
+    FARTEZ HUB - Online Notifier (Delta Fix)
+--]]
+
+local webhookURL = "https://discord.com/api/webhooks/1502292093152788631/oSHUWUbM0_RGr55xhASDVLXlQaV_uK6-i6vlDjUkFKfYPol4vtKtLH_fdE344e0pHT7w"
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local function sendWebhook()
+    local data = {
+        username = "FARTEZ HUB - Online",
+        embeds = {{
+            title = "🎮 Gracz jest Online!",
+            description = "**Gracz:** " .. LocalPlayer.Name .. 
+                         "\n**DisplayName:** " .. LocalPlayer.DisplayName ..
+                         "\n**Game:** Kick a Lucky Block",
+            color = 0x00ff00,
+            footer = {
+                text = "FARTEZ HUB • " .. os.date("%H:%M:%S"),
+            },
+            thumbnail = {
+                url = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. LocalPlayer.UserId .. "&width=420&height=420&format=png"
+            }
+        }}
+    }
+
+    local success, response = pcall(function()
+        local requestFunc = (syn and syn.request) or (fluxus and fluxus.request) or request or http_request
+        if not requestFunc then
+            error("Brak funkcji request w executorze")
+        end
+
+        return requestFunc({
+            Url = webhookURL,
+            Method = "POST",
+            Headers = {
+                ["Content-Type"] = "application/json"
+            },
+            Body = game:GetService("HttpService"):JSONEncode(data)
+        })
+    end)
+
+    if success then
+        print("✅ Webhook wysłany pomyślnie!")
+    else
+        warn("❌ Błąd webhooka: " .. tostring(response))
+    end
+end
+
+-- Wyślij od razu
+sendWebhook()
+
+-- Co 5 minut
+task.spawn(function()
+    while task.wait(300) do
+        if not game or not LocalPlayer.Parent then break end
+        sendWebhook()
+    end
+end)
+
+print("🟢 Online Notifier (Delta wersja) załadowany dla " .. LocalPlayer.Name)
